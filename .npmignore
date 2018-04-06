@@ -6,3 +6,4 @@
 webpack.config.base.js
 webpack.config.js
 webpack.config.prod.js
+yarn-error.log
