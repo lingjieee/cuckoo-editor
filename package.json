@@ -11,8 +11,8 @@
     "lingjie <lingjie@jieee.xyz> (https://github.com/lingjieee)"
   ],
   "scripts": {
-    "start": "webpack-dev-server -d --history-api-fallback --hot --inline --progress --colors --port 3200",
-    "build": "rm -rf lib/ && NODE_ENV=production webpack --config webpack.config.prod.js --progress --colors",
+    "start": "webpack-dev-server -d --hot --colors",
+    "build": "rm -rf lib/ && NODE_ENV=production webpack --config webpack.config.prod.js --progress --colors -d -p",
     "prepublish": "npm run build"
   },
   "license": "MIT",

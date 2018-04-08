@@ -25,6 +25,9 @@ module.exports = merge(baseConfigs,{
     stats: { chunks:false },
     contentBase: './example',
     watchContentBase: true,
-    hot: true
+    inline: true,
+    historyApiFallback: true,
+    progress: true,
+    port: 3200
   }
 })
