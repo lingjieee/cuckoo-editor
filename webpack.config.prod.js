@@ -8,7 +8,7 @@ const baseConfigs = require('./webpack.config.base');
 module.exports = merge(baseConfigs,{
   context: path.join(__dirname, './src'),
   entry: {
-    index: './index.jsx'
+    index: './index.tsx'
   },
   output: {
     path: path.join(__dirname, './lib'),

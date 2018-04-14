@@ -8,7 +8,7 @@ const baseConfigs = require('./webpack.config.base');
 module.exports = merge(baseConfigs,{
   devtool: 'cheap-module-source-map',
   entry:{
-    index: './example/index.jsx'
+    index: './example/index.tsx'
   },
   output:{
     path: path.join(__dirname, './lib'),

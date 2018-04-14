@@ -1,23 +1,17 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
-const eslintFormatter = require('react-dev-utils/eslintFormatter');
 
 module.exports = {
   module: {
     strictExportPresence: true,
     rules: [
       {
-        test: /\.(js|jsx|mjs)$/,
+        test: /\.ts(x?)$/,
         enforce: 'pre',
         use: [
           {
-            options: {
-              formatter: eslintFormatter,
-              eslintPath: require.resolve('eslint'),
-
-            },
-            loader: require.resolve('eslint-loader'),
+            loader: require.resolve('tslint-loader'),
           },
         ],
         include: [/src/, /example/]
@@ -39,6 +33,21 @@ module.exports = {
             options: {
               compact: true,
             },
+          },
+          {
+            test: /\.ts(x?)$/,
+            include: [/src/, /example/],
+            use: [
+              {
+                loader: require.resolve('babel-loader'),
+                options: {
+                  compact: true
+                }
+              },
+              {
+                loader: require.resolve('ts-loader')
+              }
+            ]
           },
           {
             test: [/\.css$/],
@@ -153,6 +162,6 @@ module.exports = {
       'react': path.join(__dirname, 'node_modules', 'react'),
       'veriables': path.join(__dirname, './src/assets/styles/veriables.scss')
     },
-    extensions: ['.js', '.jsx']
+    extensions: ['.js', '.jsx', '.tsx']
   }
 }

@@ -1,2 +1,14 @@
 @import "~veriables";
 @import "icons";
+
+.#{$prefix}editor{
+  .#{$prefix}controlBar{
+
+  }
+  .#{$prefix}content{
+    height: 500px;
+    .DraftEditor-root{
+      height: 100%;
+    }
+  }
+}
