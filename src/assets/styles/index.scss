@@ -1,5 +1,5 @@
 @import "~veriables";
-@import "icons";
+@import "./icons";
 
 .#{$prefix}editor{
   .#{$prefix}controlBar{
@@ -9,6 +9,12 @@
     height: 500px;
     .DraftEditor-root{
       height: 100%;
+      .DraftEditor-editorContainer{
+        .public-DraftEditor-content {
+          box-sizing: border-box;
+          padding: 15px;
+        }
+      }
     }
   }
 }

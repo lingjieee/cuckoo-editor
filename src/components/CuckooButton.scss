@@ -1,11 +1,18 @@
-@import "./veriables";
+@import "../assets/styles/veriables";
 
 .controller-button{
   padding: 0;
   outline: 0;
-  min-width: 36px;
+  min-width: 30px;
   background-color: transparent;
   border: none;
   color: #6a6f7b;
   font-size: 14px;
+  [class^="cc-icons-"], [class*=" cc-icons-"] {
+    line-height: 30px;
+  }
+  &.disable{
+    color: #bfbfbf;
+    cursor: not-allowed;
+  }
 }

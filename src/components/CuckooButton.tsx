@@ -1,7 +1,6 @@
 import * as React from 'react';
-import '../assets/styles/button.scss';
-import Tooltip  from "rc-tooltip";
-import 'rc-tooltip/assets/bootstrap.css';
+import './CuckooButton.scss';
+import CuskooToolTips from "./CuckooToolTips";
 
 export type TooltipPlacement =
     'top' | 'left' | 'right' | 'bottom' |
@@ -11,33 +10,26 @@ export type RenderFunction = () => React.ReactNode;
 
 interface IButtonProps {
     title: React.ReactNode| RenderFunction,
-    mouseEnterDelay?: number,
-    mouseLeaveDelay?: number,
     children: React.ReactNode,
-    placement?: TooltipPlacement,
-    onClick?: React.FormEventHandler<any>
+    onClick?: any,
+    prefixCls?: string
 }
 interface IButtonState {}
 
 export default class CuckooButton extends React.Component<IButtonProps, IButtonState> {
 
-    static defaultProps = {
-        mouseEnterDelay: 0.1,
-        mouseLeaveDelay: 0.1,
-        placement: 'bottom' as TooltipPlacement,
-        onClick: ()=>{}
+    handleClick = (e: any) => {
+      if(this.props.onClick)
+          this.props.onClick(e);
     };
 
     render() {
         return (
-          <Tooltip overlay={this.props.title||''}
-                   placement={this.props.placement}
-                   mouseEnterDelay={this.props.mouseEnterDelay}
-                   mouseLeaveDelay={this.props.mouseLeaveDelay}>
-            <button className="cuckoo-button">
+          <CuskooToolTips title={this.props.title} mouseEnterDelay={0.5}>
+            <button className={this.props.prefixCls||''} onClick={this.handleClick}>
                 {this.props.children}
             </button>
-          </Tooltip>
+          </CuskooToolTips>
         );
     }
 }

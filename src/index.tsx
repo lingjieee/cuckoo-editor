@@ -2,23 +2,37 @@ import * as React from 'react';
 import {Editor, EditorState, RichUtils, DraftEditorCommand} from 'draft-js';
 import 'draft-js/dist/Draft.css';
 import './assets/styles/index.scss';
+import ControllBar from "./controller/ControllBar";
 
-interface ICuckooProps {}
+interface ICuckooProps {
+  language?: string
+}
+
 interface ICuckooState {
-    editorState: EditorState
+  editorState: EditorState,
+  browserCls: string
 }
 
 export default class Cuckoo extends React.Component<ICuckooProps, ICuckooState> {
 
-  constructor(props: ICuckooState) {
+  constructor(props: ICuckooProps) {
     super(props);
+    let browser = null;
+    if ((window as any).chrome) {
+      browser = 'chrome'
+    } else if ((window as any).safari) {
+      browser = 'safari'
+    } else if (navigator.userAgent.indexOf('Firefox') > 0) {
+      browser = 'firefox'
+    }
     this.state = {
-      editorState: EditorState.createEmpty()
+      editorState: EditorState.createEmpty(),
+      browserCls: `browser-${browser}`
     };
   }
 
   onChange = (editorState: any) => {
-      this.setState({editorState});
+    this.setState({editorState});
   };
 
   handleKeyCommand = (command: DraftEditorCommand, editorState: EditorState) => {
@@ -32,10 +46,8 @@ export default class Cuckoo extends React.Component<ICuckooProps, ICuckooState> 
 
   render() {
     return (
-      <div className="cuckoo-editor">
-        <div className="cuckoo-controlBar">
-
-        </div>
+      <div className={`cuckoo-editor ${this.state.browserCls}`}>
+        <ControllBar/>
         <div className="cuckoo-content">
           <Editor
             editorState={this.state.editorState}
